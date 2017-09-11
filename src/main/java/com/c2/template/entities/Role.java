@@ -1,4 +1,4 @@
-package com.c2.template.model;
+package com.c2.template.entities;
 
 import java.io.Serializable;
 import java.util.Set;

@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.c2.template.auth.repository.UserRepository;
-import com.c2.template.model.Role;
-import com.c2.template.model.User;
+import com.c2.template.entities.Role;
+import com.c2.template.entities.User;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -28,9 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		User user = userRepository.findByUsername(username);
 		@SuppressWarnings("rawtypes")
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		for (Role role : user.getRoles()) {
+		/*for (Role role : user.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-		}
+		}*/
 
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				grantedAuthorities);

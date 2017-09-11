@@ -7,7 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.c2.template.auth.service.UserService;
-import com.c2.template.model.User;
+import com.c2.template.entities.User;
 
 @Component
 public class UserValidator implements Validator {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.c2.template.auth.service.SecurityService;
 import com.c2.template.auth.service.UserService;
-import com.c2.template.model.User;
+import com.c2.template.entities.User;
 import com.c2.template.validator.UserValidator;
 
 @Controller

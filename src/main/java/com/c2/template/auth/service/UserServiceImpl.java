@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.c2.template.auth.repository.RoleRepository;
 import com.c2.template.auth.repository.UserRepository;
-import com.c2.template.model.User;
+import com.c2.template.entities.User;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setRoles(new HashSet<>(roleRepository.findAll()));
+		/*user.setRoles(new HashSet<>(roleRepository.findAll()));*/
 		userRepository.save(user);
 	}
 
