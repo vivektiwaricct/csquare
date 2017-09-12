@@ -1,30 +1,45 @@
 package com.c2.template.controller.response;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class Response {
-	private String status;
-	private Error error;
+	@JsonProperty("meta")
+	Map<String,Object> meta = new HashMap<>();
+	@JsonProperty("data")
+	private Object data;
 
 	public Response() {
 	}
 
-	public Response(String status) {
-		this.status = status;
+	public Map<String, Object> getMeta() {
+		return meta;
 	}
 
-	public String getStatus() {
-		return status;
+	public void setMeta(Map<String, Object> meta) {
+		for(String key:meta.keySet()){
+			this.meta.put(key, meta.get(key));
+		}
+	}
+	
+	public void addMeta(String key,Object value) {
+		this.meta.put(key, value);
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+
+	public Object getData() {
+		return data;
 	}
 
-	public Error getError() {
-		return error;
-	}
-
-	public void setError(Error error) {
-		this.error = error;
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

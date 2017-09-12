@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.c2.template.C2Constants;
-import com.c2.template.controller.response.Response;
+import com.c2.template.auth.service.RequestContextKeeper;
 import com.c2.template.entities.Faculty;
 import com.c2.template.service.FacultyService;
 
@@ -19,8 +19,9 @@ public class FacultyRegistrationController {
 	private FacultyService facultyService;
 
 	@RequestMapping("/registerFaculty")
-	public ResponseEntity<Response> registerFaculty(Model model, Faculty faculty, BindingResult errors) {
+	public ResponseEntity<Void> registerFaculty(Model model, Faculty faculty, BindingResult errors) {
 		facultyService.registerFaculty(faculty);
-		return new ResponseEntity<Response>(new Response(C2Constants.SUCCESS), HttpStatus.OK);
+		RequestContextKeeper.getContext().put(C2Constants.STATUS, C2Constants.SUCCESS);
+		return new ResponseEntity<>( HttpStatus.OK);
 	}
 }
