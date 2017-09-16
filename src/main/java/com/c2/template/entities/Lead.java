@@ -1,3 +1,5 @@
+package com.c2.template.entities;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,13 +19,17 @@ public class Lead {
 	private String firstName;
 	private String lastName;
 	private String phone;
-	private String leadType;
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
-	private String address;
+	private String email;
 	private String city;
-	private String phoneNO;
-	private String comment;
+	private String subject;
+
+	public long getLeadNo() {
+		return leadNo;
+	}
+
+	public void setLeadNo(long leadNo) {
+		this.leadNo = leadNo;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -49,36 +55,12 @@ public class Lead {
 		this.phone = phone;
 	}
 
-	public String getLeadType() {
-		return leadType;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLeadType(String leadType) {
-		this.leadType = leadType;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public long getLeadNo() {
-		return leadNo;
-	}
-
-	public void setLeadNo(long leadNo) {
-		this.leadNo = leadNo;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getCity() {
@@ -89,20 +71,12 @@ public class Lead {
 		this.city = city;
 	}
 
-	public String getPhoneNO() {
-		return phoneNO;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setPhoneNO(String phoneNO) {
-		this.phoneNO = phoneNO;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 }

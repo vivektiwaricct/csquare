@@ -2,6 +2,7 @@ package com.c2.template.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.c2.template.C2Constants;
-import com.c2.template.auth.service.RequestContextKeeper;
-import com.c2.template.entities.Faculty;
-import com.c2.template.service.FacultyService;
+import com.c2.template.entities.Lead;
+import com.c2.template.model.LeadModel;
+import com.c2.template.service.LeadManagementService;
 
 @Validated
 @RestController
-public class FacultyRegistrationController {
+public class LeadGenerationController {
 	@Autowired
-	private FacultyService facultyService;
+	LeadManagementService leadManagementService;
 
-	@RequestMapping(value = "/registerFaculty", method = RequestMethod.POST)
-	public ResponseEntity<Void> registerFaculty(Model model, @Valid Faculty faculty, BindingResult errors) {
-		facultyService.registerFaculty(faculty);
-		RequestContextKeeper.getContext().put(C2Constants.STATUS, C2Constants.SUCCESS);
+	@RequestMapping(value = "/registerLead", method = RequestMethod.POST)
+	public ResponseEntity<Void> registerLead(Model model, @Valid LeadModel leadModel, BindingResult errors) {
+		Lead lead = new Lead();
+		BeanUtils.copyProperties(leadModel, lead);
+		leadManagementService.saveLead(lead);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
