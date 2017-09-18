@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.c2.template.entities.Lead;
+import com.c2.template.entities.Syllabus;
 import com.c2.template.model.LeadModel;
 import com.c2.template.service.LeadManagementService;
 

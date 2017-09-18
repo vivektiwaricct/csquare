@@ -1,14 +1,10 @@
 package com.c2.template.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.c2.template.entities.Gender;
 
 @Entity
 @Table
@@ -17,11 +13,17 @@ public class Lead {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long leadNo;
 	private String firstName;
+	private String leadType;
 	private String lastName;
 	private String phone;
+	private String gender;
+	private String grade;
+	private String syllabus;
+	private String address;
 	private String email;
 	private String city;
 	private String subject;
+	private String comments;
 
 	public long getLeadNo() {
 		return leadNo;
@@ -77,6 +79,54 @@ public class Lead {
 
 	public void setSubject(String subject) {
 		this.subject = subject;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getLeadType() {
+		return leadType;
+	}
+
+	public void setLeadType(String leadType) {
+		this.leadType = leadType;
+	}
+
+	public String getSyllabus() {
+		return syllabus;
+	}
+
+	public void setSyllabus(String syllabus) {
+		this.syllabus = syllabus;
 	}
 
 }

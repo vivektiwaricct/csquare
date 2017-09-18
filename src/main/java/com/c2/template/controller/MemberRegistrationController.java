@@ -2,6 +2,7 @@ package com.c2.template.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,27 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.c2.template.C2Constants;
 import com.c2.template.auth.service.RequestContextKeeper;
-import com.c2.template.entities.Faculty;
+import com.c2.template.entities.MemberRegistrationEntity;
+import com.c2.template.model.MemberRegistrationBean;
 import com.c2.template.model.TutorEducationalDetails;
-import com.c2.template.service.FacultyService;
+import com.c2.template.service.MemberRegistrationService;
 
 @Validated
 @RestController
-public class FacultyRegistrationController {
+public class MemberRegistrationController {
 	@Autowired
-	private FacultyService facultyService;
+	MemberRegistrationService memberRegistrationService;
 
-	@RequestMapping(value = "/registerFaculty", method = RequestMethod.POST)
-	public ResponseEntity<Void> registerFaculty(Model model, @Valid Faculty faculty, BindingResult errors) {
-		facultyService.registerFaculty(faculty);
-		RequestContextKeeper.getContext().put(C2Constants.STATUS, C2Constants.SUCCESS);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/updateEducationalDetails", method = RequestMethod.POST)
-	public ResponseEntity<Void> updateEducationalDetails(Model model,@Valid TutorEducationalDetails tutorEducationalDetails,
+	@RequestMapping(value = "/registerMember", method = RequestMethod.POST)
+	public ResponseEntity<Void> registerMember(Model model, @Valid MemberRegistrationBean memberBean,
 			BindingResult errors) {
-		RequestContextKeeper.getContext().put(C2Constants.STATUS, C2Constants.SUCCESS);
+		MemberRegistrationEntity memberEntity = new MemberRegistrationEntity();
+		BeanUtils.copyProperties(memberBean, memberEntity);
+		memberRegistrationService.memberRegistration(memberEntity);
+
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	
 }

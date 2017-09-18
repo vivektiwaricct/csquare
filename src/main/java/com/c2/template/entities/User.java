@@ -12,35 +12,35 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@Entity
-@Table
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+//@Entity
+//@Table
 public class User implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GenericGenerator(name = "USER_ID_GEN", strategy = "foreign", parameters = {
+			@Parameter(name = "property", value = "member") })
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
-	private String username;
 	private String password;
-	private String firstName;
-	private String lastName;
-	private String phone;
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
-	private String mobile;
-	private String email;
-	private String address;
+
 	private boolean isActive;
 
 	@Enumerated(EnumType.STRING)
-	private UserType userType;
-	@Transient
-	private String passwordConfirm;
+	private UserType role;
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private MemberRegistrationEntity member;
 
 	public Long getUserId() {
 		return userId;
@@ -48,70 +48,6 @@ public class User implements Serializable {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public boolean getActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
 	}
 
 	public String getPassword() {
@@ -122,28 +58,20 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
+	public boolean getIsActive() {
+		return isActive;
 	}
 
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
-	public Gender getGender() {
-		return gender;
+	public UserType getRole() {
+		return role;
 	}
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
-
-	public UserType getUserType() {
-		return userType;
-	}
-
-	public void setUserType(UserType userType) {
-		this.userType = userType;
+	public void setRole(UserType role) {
+		this.role = role;
 	}
 
 }
