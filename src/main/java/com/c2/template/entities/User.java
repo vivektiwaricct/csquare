@@ -30,7 +30,7 @@ public class User implements Serializable {
 	@Id
 	@GenericGenerator(name = "USER_ID_GEN", strategy = "foreign", parameters = {
 			@Parameter(name = "property", value = "member") })
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator="USER_ID_GEN")
 	private Long userId;
 	private String password;
 

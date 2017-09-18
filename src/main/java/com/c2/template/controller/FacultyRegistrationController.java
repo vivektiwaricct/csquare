@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.c2.template.C2Constants;
 import com.c2.template.auth.service.RequestContextKeeper;
 import com.c2.template.entities.Faculty;
-import com.c2.template.model.TutorEducationalDetails;
+import com.c2.template.model.TutorEducationalDetailsModel;
 import com.c2.template.service.FacultyService;
 
 @Validated
@@ -32,7 +32,7 @@ public class FacultyRegistrationController {
 	}
 
 	@RequestMapping(value = "/updateEducationalDetails", method = RequestMethod.POST)
-	public ResponseEntity<Void> updateEducationalDetails(Model model,@Valid TutorEducationalDetails tutorEducationalDetails,
+	public ResponseEntity<Void> updateEducationalDetails(Model model,@Valid TutorEducationalDetailsModel tutorEducationalDetails,
 			BindingResult errors) {
 		RequestContextKeeper.getContext().put(C2Constants.STATUS, C2Constants.SUCCESS);
 		return new ResponseEntity<>(HttpStatus.OK);

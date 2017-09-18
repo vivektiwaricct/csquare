@@ -17,7 +17,7 @@ import com.c2.template.C2Constants;
 import com.c2.template.auth.service.RequestContextKeeper;
 import com.c2.template.entities.MemberRegistrationEntity;
 import com.c2.template.model.MemberRegistrationBean;
-import com.c2.template.model.TutorEducationalDetails;
+import com.c2.template.model.TutorEducationalDetailsModel;
 import com.c2.template.service.MemberRegistrationService;
 
 @Validated
