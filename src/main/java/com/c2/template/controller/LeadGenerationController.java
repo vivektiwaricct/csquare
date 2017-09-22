@@ -12,9 +12,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.c2.template.entities.Lead;
-import com.c2.template.entities.Syllabus;
 import com.c2.template.model.LeadModel;
 import com.c2.template.service.LeadManagementService;
 
@@ -24,7 +24,12 @@ public class LeadGenerationController {
 	@Autowired
 	LeadManagementService leadManagementService;
 
-	@RequestMapping(value = "/registerLead", method = RequestMethod.POST)
+	@RequestMapping(value = "/registerLead.htm", method = RequestMethod.GET)
+	public String showLeadView() {
+		return "lead";
+	}
+
+	@RequestMapping(value = "/registerLead.htm", method = RequestMethod.POST)
 	public ResponseEntity<Void> registerLead(Model model, @Valid LeadModel leadModel, BindingResult errors) {
 		Lead lead = new Lead();
 		BeanUtils.copyProperties(leadModel, lead);
